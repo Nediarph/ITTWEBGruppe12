@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,6 +173,35 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TableController.cs" />
+    <Compile Include="DAL\Categories.cs">
+      <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Components.cs">
+      <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EmbeddedStockModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmbeddedStockModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EmbeddedStockModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EmbeddedStockModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\IReadEmbeddedStockRepository.cs" />
+    <Compile Include="DAL\IWriteEmbeddedStockRepository.cs" />
+    <Compile Include="DAL\LoanInformation.cs">
+      <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SpecificComponents.cs">
+      <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,12 +214,29 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DAL\EmbeddedStockModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+      <LastGenOutput>EmbeddedStockModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\EmbeddedStockModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+      <LastGenOutput>EmbeddedStockModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="DAL\EmbeddedStockModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EmbeddedStockModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAL\EmbeddedStockModel.edmx.diagram">
+      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -247,6 +295,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
