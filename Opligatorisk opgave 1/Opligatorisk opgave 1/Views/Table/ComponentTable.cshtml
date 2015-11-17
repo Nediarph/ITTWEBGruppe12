@@ -11,7 +11,7 @@
         <thead>
         <tr>
             <td>
-                <label class="control-label">#</label>
+                <label class="control-label">ID</label>
             </td>
             <td>
                 <label class="control-label">First Item</label>
@@ -26,21 +26,14 @@
         </thead>
 
         <tbody>
-        <tr>
-            <td>One</td>
-            <td>Two</td>
-            <td>Three</td>
-        </tr>
-        <tr>
-            <td>One</td>
-            <td>Two</td>
-            <td>Three</td>
-        </tr>
-        <tr>
-            <td>One</td>
-            <td>Two</td>
-            <td>Three</td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>item.</td>
+                <td>item.</td>
+                <td>item.</td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
