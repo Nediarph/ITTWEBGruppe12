@@ -34,7 +34,7 @@ namespace Opligatorisk_opgave_1.Controllers
             return View(toView);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult DetailsView(int id)
         {
             var test = readFromDb.GetAllSpecificComponentsById(id);
             
@@ -43,7 +43,7 @@ namespace Opligatorisk_opgave_1.Controllers
             foreach (var component in test)
             {
                 DetailsTable tmpDetailsTable = new DetailsTable() { ComponentId = component.ComponentId, ComponentName = component.Component.ComponentName};
-                if (component.LoanInformations != null)
+                if (component.LoanInformations.Count != 0)
                 {
                     var tmp = component.LoanInformations.First();
                     tmpDetailsTable.ReturnDate = tmp.ReturnDate.ToShortDateString();

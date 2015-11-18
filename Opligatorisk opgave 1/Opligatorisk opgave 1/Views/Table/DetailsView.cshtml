@@ -6,9 +6,8 @@
 
 <h2>DetailsView</h2>
 
-<h2>ComponentTable</h2>
 <div class="panel panel-default">
-    <div class="panel-heading">Component Table</div>
+    <div class="panel-heading">Details Table</div>
 
     <table class="table">
         <thead>
@@ -29,20 +28,27 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td onClick="document.location.href='http://www.youtube.com';">
+                    <td onClick="document.location.href='http://www.youtube.com'">
                         @Html.DisplayFor(modelItem => item.ComponentId)
                     </td>
-                    <td onClick="document.location.href='http://www.youtube.com';">
+                    <td onClick="document.location.href='http://www.youtube.com'">
                         @Html.DisplayFor(modelItem => item.ComponentName)
                     </td>
-                    <td onClick="document.location.href = 'http://www.youtube.com';">
+                    <td onClick="document.location.href='http://www.youtube.com'">
                         @Html.DisplayFor(modelItem => item.ReturnDate)
                     </td>
                     <td>
-                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("Details", "Table", new {id = item.ComponentId})'">Details</button>
+                        @if (item.ReturnDate != "")
+                        {
+                            <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("DetailsView", "Table", new {id = item.ComponentId})'">Hand in component</button>
+                        }
+                        else
+                        {
+                            <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("DetailsView", "Table", new {id = item.ComponentId})'">Lend component</button>
+                        }
                     </td>
                     <td>
-                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("Details", "Table", new {id = item.ComponentId})'">Details</button>
+                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("DetailsView", "Table", new {id = item.ComponentId})'">Remove component</button>
                     </td>
                 </tr>
             }
