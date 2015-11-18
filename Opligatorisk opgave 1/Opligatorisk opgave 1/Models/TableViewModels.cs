@@ -26,12 +26,12 @@ namespace Opligatorisk_opgave_1.Models
 
     public class LoanInfo
     {
-        public DateTime LoanDate { get; set; }
-        public DateTime ReturnDate { get; set; }
-        public String Name { get; set; }
-        public String Email { get; set; }
-        public String ComponentName { get; set; }
-        public int SpecificComponentId { get; set; }
+        public string LoanDate { get; set; }
+        public string ReturnDate { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string ComponentName { get; set; }
+        public string SpecificComponentId { get; set; }
 
     }
 }

@@ -57,7 +57,23 @@ namespace Opligatorisk_opgave_1.Controllers
 
         public ActionResult LoanInformationView(int id)
         {
-            return View();
+            var toView = new LoanInfo();
+            List<LoanInformation> dbLoan = readFromDb.GetLoanInformationBySpecificId(id).ToList();
+
+            if (dbLoan.Count != 0)
+            {
+                var loan = dbLoan.First();
+
+                toView.LoanDate = loan.LoanDate.ToShortDateString();
+                toView.ReturnDate = loan.ReturnDate.ToShortDateString();
+                toView.Name = loan.LoaneeName;
+                toView.Email = loan.LoaneeEmail;
+                toView.ComponentName = loan.SpecificComponent.Component.ComponentName;
+                toView.SpecificComponentId = loan.SpecCompId.ToString();
+                
+            }
+
+            return View(toView);
         }
 
         public ActionResult Index(int id)

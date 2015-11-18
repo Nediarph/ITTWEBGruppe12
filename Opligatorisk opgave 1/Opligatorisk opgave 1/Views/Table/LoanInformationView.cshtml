@@ -8,50 +8,55 @@
 <form class="form-horizontal" role="form">
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg" >Test</label>
+            <label class="control-label" for="lg" >Id</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.SpecificComponentId" />
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg">Test</label>
+            <label class="control-label" for="lg">Component Name</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.ComponentName"/>
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg">Test</label>
+            <label class="control-label" for="lg">Name</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.Name" />
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg">Test</label>
+            <label class="control-label" for="lg">Email</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.Email" />
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg">Test</label>
+            <label class="control-label" for="lg">Loan Date</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.LoanDate" />
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group form-group-lg">
-            <label class="control-label" for="lg">Test</label>
+            <label class="control-label" for="lg">Return Date</label>
             <div class="col-lg-12">
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" value="@Model.ReturnDate"/>
             </div>
         </div>
     </div>
+    <div class="col-lg-10"></div>
+    <div class="col-lg-2">
+        <button type="Button" class="btn btn-default">Ok</button>
+    </div>
+    
 </form>
