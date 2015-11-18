@@ -31,7 +31,9 @@ namespace Opligatorisk_opgave_1.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string ComponentName { get; set; }
-        public string SpecificComponentId { get; set; }
+        public int SpecificComponentId { get; set; }
+        public int ComponentId { get; set; }
+        public int LoanId { get; set; }
 
     }
 }

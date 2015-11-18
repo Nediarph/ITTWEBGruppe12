@@ -69,11 +69,29 @@ namespace Opligatorisk_opgave_1.Controllers
                 toView.Name = loan.LoaneeName;
                 toView.Email = loan.LoaneeEmail;
                 toView.ComponentName = loan.SpecificComponent.Component.ComponentName;
-                toView.SpecificComponentId = loan.SpecCompId.ToString();
+                toView.SpecificComponentId = loan.SpecCompId;
+                toView.ComponentId = loan.SpecificComponent.ComponentId;
+                toView.LoanId = loan.LoanId;
                 
             }
 
             return View(toView);
+        }
+
+        public ActionResult SaveLoanInformation(int ComponentId, int SpecificComponentId, string ComponentName, string Name, string Email, string LoanDate, string ReturnDate, int LoanId)
+        {
+            LoanInformation updatedLoan = new LoanInformation();
+
+            updatedLoan.LoanDate = DateTime.Parse(LoanDate);
+            updatedLoan.ReturnDate = DateTime.Parse(ReturnDate);
+            updatedLoan.SpecCompId = SpecificComponentId;
+            updatedLoan.LoaneeName = Name;
+            updatedLoan.LoaneeEmail = Email;
+            updatedLoan.LoanId = LoanId;
+
+            writeToDb.UpdateLoanInformation(LoanId, updatedLoan);
+
+            return RedirectToAction("DetailsView", new { id = ComponentId });
         }
 
         public ActionResult Index(int id)
