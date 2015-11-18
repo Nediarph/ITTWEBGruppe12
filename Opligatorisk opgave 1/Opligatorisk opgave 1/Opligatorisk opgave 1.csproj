@@ -173,26 +173,26 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TableController.cs" />
-    <Compile Include="DAL\Categories.cs">
+    <Compile Include="DAL\Category.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Components.cs">
+    <Compile Include="DAL\Component.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\EmbeddedStockModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EmbeddedStockModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="DAL\EmbeddedStockModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="DAL\EmbeddedStockModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="DAL\IReadEmbeddedStockRepository.cs" />
     <Compile Include="DAL\IWriteEmbeddedStockRepository.cs" />
@@ -200,7 +200,7 @@
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\ReadEmbeddedStockRepository.cs" />
-    <Compile Include="DAL\SpecificComponents.cs">
+    <Compile Include="DAL\SpecificComponent.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -217,13 +217,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DAL\EmbeddedStockModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EmbeddedStockModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DAL\EmbeddedStockModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="DAL\EmbeddedStockModel.edmx.diagram">
       <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\EmbeddedStockModel.tt">
+      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EmbeddedStockModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
@@ -232,13 +235,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DAL\EmbeddedStockModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EmbeddedStockModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DAL\EmbeddedStockModel.edmx.diagram">
-      <DependentUpon>EmbeddedStockModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -301,6 +297,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DAL\EmbeddedStockModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EmbeddedStockModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
