@@ -34,16 +34,32 @@ namespace Opligatorisk_opgave_1.Controllers
             return View(toView);
         }
 
+        public ActionResult Details(int id)
+        {
+            var test = readFromDb.GetAllSpecificComponentsById(id);
+            
+            var toView = new List<DetailsTable> {};
+
+            foreach (var component in test)
+            {
+                DetailsTable tmpDetailsTable = new DetailsTable() { ComponentId = component.ComponentId, ComponentName = component.Component.ComponentName};
+                if (component.LoanInformations != null)
+                {
+                    var tmp = component.LoanInformations.First();
+                    tmpDetailsTable.ReturnDate = tmp.ReturnDate.ToShortDateString();
+                }
+                else{tmpDetailsTable.ReturnDate = "";}
+
+                toView.Add(tmpDetailsTable);
+            }
+
+            return View(toView);
+        }
+
         public ActionResult Index(int id)
         {
             return View();
         }
 
-        [HttpPost, ActionName("Accept")]
-        [ValidateAntiForgeryToken]
-        public ActionResult AcceptConfirmed(int id)
-        {
-            return RedirectToAction("Index", new { id = id });
-        }
     }
 }

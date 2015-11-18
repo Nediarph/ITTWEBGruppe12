@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Opligatorisk_opgave_1.Models.DetailsTable>
+
+@{
+    ViewBag.Title = "DetailsView";
+}
+
+<h2>DetailsView</h2>
+
+<h2>ComponentTable</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">Component Table</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    <label class="control-label">ID</label>
+                </td>
+                <td>
+                    <label class="control-label">Name</label>
+                </td>
+                <td>
+                    <label class="control-label">Return date</label>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td onClick="document.location.href='http://www.youtube.com';">
+                        @Html.DisplayFor(modelItem => item.ComponentId)
+                    </td>
+                    <td onClick="document.location.href='http://www.youtube.com';">
+                        @Html.DisplayFor(modelItem => item.ComponentName)
+                    </td>
+                    <td onClick="document.location.href = 'http://www.youtube.com';">
+                        @Html.DisplayFor(modelItem => item.ReturnDate)
+                    </td>
+                    <td>
+                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("Details", "Table", new {id = item.ComponentId})'">Details</button>
+                    </td>
+                    <td>
+                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("Details", "Table", new {id = item.ComponentId})'">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

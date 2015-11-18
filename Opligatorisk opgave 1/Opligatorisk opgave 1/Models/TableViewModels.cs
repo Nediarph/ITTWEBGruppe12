@@ -13,4 +13,13 @@ namespace Opligatorisk_opgave_1.Models
         public string CategoryName { get; set; }
         public int Amount { get; set; }
     }
+
+    public class DetailsTable
+    {
+        public int ComponentId { get; set; }
+        public string ComponentName { get; set; }
+        [DefaultValue("")]
+        public string CategoryName { get; set; }
+        public string ReturnDate { get; set; }
+    }
 }
