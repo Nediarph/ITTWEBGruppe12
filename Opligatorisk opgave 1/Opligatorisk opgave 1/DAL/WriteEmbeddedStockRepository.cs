@@ -27,9 +27,14 @@ namespace Opligatorisk_opgave_1.DAL
             }
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(int catId, Category category)
         {
-            var itemToUpdate = dbContext.Categories.
+            var itemToUpdate = dbContext.Categories.SingleOrDefault(x => x.CategoryId == catId);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate = category;
+                dbContext.SaveChanges();
+            }
         }
 
         public void AddNewComponent(Component comp)
@@ -42,6 +47,31 @@ namespace Opligatorisk_opgave_1.DAL
         {
             dbContext.SpecificComponents.Add(specComp);
             dbContext.SaveChanges();
+        }
+
+        public void UpdateSpecificComponent(int specId, SpecificComponent specComp)
+        {
+            var itemToUpdate = dbContext.SpecificComponents.SingleOrDefault(x => x.SpecCompId == specId);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate = specComp;
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void UpdateLoanInformation(int loanId, LoanInformation loan)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateComponent(int compId, Component component)
+        {
+            var itemToUpdate = dbContext.Components.SingleOrDefault(x => x.ComponentId == compId);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate = component;
+                dbContext.SaveChanges();
+            }
         }
 
         public void RemoveComponent(int compId)

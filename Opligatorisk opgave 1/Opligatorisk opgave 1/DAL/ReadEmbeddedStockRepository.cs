@@ -6,36 +6,44 @@ namespace Opligatorisk_opgave_1.DAL
 {
     public class ReadEmbeddedStockRepository : IReadEmbeddedStockRepository
     {
-        private EmbeddedStockDbEntities dbContext;
-        public ReadEmbeddedStockRepository(EmbeddedStockDbEntities Context)
-        {
-            dbContext = Context;
-        }
         public IEnumerable<Component> GetAllComponents()
         {
-            List<Component> components = dbContext.Components.ToList();
-            return components;
+            using (var dbContext = new EmbeddedStockDbEntities())
+            {
+                List<Component> components = dbContext.Components.ToList();
+
+                return components;
+            }
         }
 
         public IEnumerable<SpecificComponent> GetAllSpecificComponentsById(int id)
         {
-            List<SpecificComponent> specficComponents =
-                dbContext.SpecificComponents.Where(x => x.ComponentId == id).ToList();
-            return specficComponents;
+            using (var dbContext = new EmbeddedStockDbEntities())
+            {
+                List<SpecificComponent> specficComponents =
+                    dbContext.SpecificComponents.Where(x => x.ComponentId == id).ToList();
+                return specficComponents;
+            }
         }
 
         public IEnumerable<LoanInformation> GetLoanInformationBySpecificId(int specId)
         {
-            //LoanInformation loanInfo = dbContext.LoanInformation.Where(x => x.)
-            IEnumerable<LoanInformation> loanInfo = dbContext.LoanInformation.Where(x => x.SpecCompId == specId).ToList();
+            using (var dbContext = new EmbeddedStockDbEntities())
+            {
+                IEnumerable<LoanInformation> loanInfo =
+                    dbContext.LoanInformation.Where(x => x.SpecCompId == specId).ToList();
 
-            return loanInfo;
+                return loanInfo;
+            }
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
-            IEnumerable<Category> categories = dbContext.Categories.ToList();
-            return categories;
+            using (var dbContext = new EmbeddedStockDbEntities())
+            {
+                IEnumerable<Category> categories = dbContext.Categories.ToList();
+                return categories;
+            }
         }
     }
 }
