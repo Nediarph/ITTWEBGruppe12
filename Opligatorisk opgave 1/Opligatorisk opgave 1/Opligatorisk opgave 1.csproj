@@ -199,6 +199,7 @@
     <Compile Include="DAL\LoanInformation.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ReadEmbeddedStockRepository.cs" />
     <Compile Include="DAL\SpecificComponents.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
