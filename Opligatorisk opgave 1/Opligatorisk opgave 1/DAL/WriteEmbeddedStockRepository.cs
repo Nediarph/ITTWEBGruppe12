@@ -61,7 +61,12 @@ namespace Opligatorisk_opgave_1.DAL
 
         public void UpdateLoanInformation(int loanId, LoanInformation loan)
         {
-            throw new NotImplementedException();
+            var itemToUpdate = dbContext.LoanInformation.SingleOrDefault(x => x.LoanId == loanId);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate = loan;
+                dbContext.SaveChanges();
+            }
         }
 
         public void UpdateComponent(int compId, Component component)
