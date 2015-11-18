@@ -163,7 +163,7 @@ namespace Opligatorisk_opgave_1.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Table");
+                    return RedirectToAction("ComponentTable", "Table");
                 }
                 AddErrors(result);
             }
@@ -449,7 +449,7 @@ namespace Opligatorisk_opgave_1.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Table");
+            return RedirectToAction("ComponentTable", "Table");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

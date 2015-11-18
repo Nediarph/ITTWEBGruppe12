@@ -11,13 +11,14 @@ namespace Opligatorisk_opgave_1.Controllers
     public class TableController : Controller
     {
         private IReadEmbeddedStockRepository readFromDb = new ReadEmbeddedStockRepository(new EmbeddedStockDbEntities());
+        private IWriteEmbeddedStockRepository writeToDb = new WriteEmbeddedStockRepository(new EmbeddedStockDbEntities());
         // GET: Table
         public ActionResult ComponentTable()
         {
-            var test = readFromDb.GetAllComponents();
+            var componentList = readFromDb.GetAllComponents();
             var toView = new List<ComponentTable> { };
 
-            foreach (Component component in test)
+            foreach (Component component in componentList)
             {
                 ComponentTable tmpComponentTable = new ComponentTable() {ComponentId = component.ComponentId, ComponentName = component.ComponentName, Amount = component.SpecificComponents.Count};
                 if (component.Category != null)
@@ -34,11 +35,11 @@ namespace Opligatorisk_opgave_1.Controllers
 
         public ActionResult DetailsView(int id)
         {
-            var test = readFromDb.GetAllSpecificComponentsById(id);
+            var componentList = readFromDb.GetAllSpecificComponentsById(id);
             
             var toView = new List<DetailsTable> {};
 
-            foreach (var component in test)
+            foreach (var component in componentList)
             {
                 DetailsTable tmpDetailsTable = new DetailsTable() { ComponentId = id, SpecificComponentId = component.ComponentId, ComponentName = component.Component.ComponentName};
                 if (component.LoanInformations.Count != 0)
@@ -64,16 +65,25 @@ namespace Opligatorisk_opgave_1.Controllers
             return View();
         }
 
-        public ActionResult removeLoanInformation(int componentId, int speceficComponentId)
+        public ActionResult RemoveLoanInformation(int componentId, int specificComponentId)
         {
+            writeToDb.RemoveLoanInformation(specificComponentId);
 
             return RedirectToAction("DetailsView", new {id = componentId});
         }
 
-        public ActionResult removeComponent(int componentId, int speceficComponentId)
+        public ActionResult RemoveSpecificComponent(int componentId, int specificComponentId)
         {
+            writeToDb.RemoveSpecificComponent(specificComponentId);
 
             return RedirectToAction("DetailsView", new { id = componentId });
+        }
+
+        public ActionResult RemoveComponent(int componentId)
+        {
+            writeToDb.RemoveComponent(componentId);
+
+            return RedirectToAction("ComponentTable");
         }
 
     }

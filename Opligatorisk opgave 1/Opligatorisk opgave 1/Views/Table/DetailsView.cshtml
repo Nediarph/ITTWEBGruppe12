@@ -28,19 +28,19 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td onClick="document.location.href='http://www.youtube.com'">
+                    <td>
                         @Html.DisplayFor(modelItem => item.SpecificComponentId)
                     </td>
-                    <td onClick="document.location.href='http://www.youtube.com'">
+                    <td>
                         @Html.DisplayFor(modelItem => item.ComponentName)
                     </td>
-                    <td onClick="document.location.href='http://www.youtube.com'">
+                    <td>
                         @Html.DisplayFor(modelItem => item.ReturnDate)
                     </td>
                     <td>
                         @if (item.ReturnDate != "")
                         {
-                            <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("removeLoanInformation", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Hand in component</button>
+                            <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("RemoveLoanInformation", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Hand in component</button>
                         }
                         else
                         {
@@ -48,7 +48,7 @@
                         }
                     </td>
                     <td>
-                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("removeComponent", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Remove component</button>
+                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("RemoveSpecificComponent", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Remove component</button>
                     </td>
                 </tr>
             }

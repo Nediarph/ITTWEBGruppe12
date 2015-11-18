@@ -42,7 +42,10 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("DetailsView", "Table", new {id = item.ComponentId})'">Details</button>
+                    <button type="Button" class="btn btn-default" onClick="location.href = '@Url.Action("DetailsView", "Table", new {id = item.ComponentId})'">Details</button>
+                </td>
+                <td>
+                    <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("RemoveComponent", "Table", new {id = item.ComponentId})'">Remove component</button>
                 </td>
             </tr>
         }
