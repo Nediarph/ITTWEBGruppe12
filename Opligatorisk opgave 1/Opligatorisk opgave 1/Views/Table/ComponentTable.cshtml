@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Opligatorisk_opgave_1.Models.ComponentTable>
 @{
     ViewBag.Title = "ComponentTable";
 }
@@ -14,13 +14,13 @@
                 <label class="control-label">ID</label>
             </td>
             <td>
-                <label class="control-label">First Item</label>
+                <label class="control-label">Name</label>
             </td>
             <td>
-                <label class="control-label">Secound Item</label>
+                <label class="control-label">Category</label>
             </td>
             <td>
-                <label class="control-label">Third Item</label>
+                <label class="control-label">Amount</label>
             </td>
         </tr>
         </thead>
@@ -29,9 +29,27 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>item.</td>
-                <td>item.</td>
-                <td>item.</td>
+                <td onClick="document.location.href='http://www.youtube.com';">
+                    @Html.DisplayFor(modelItem => item.ComponentId)
+                </td>
+                <td onClick="document.location.href='http://www.youtube.com';">
+                    @Html.DisplayFor(modelItem => item.ComponentName)
+                </td>
+                <td onClick="document.location.href = 'http://www.youtube.com';">
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @using (Html.BeginForm("Index","Table", new { id = item.ComponentId }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-default" onClick=" ">Details</button>
+                    }
+                    
+                    @*<button type="button" class="btn btn-default" onClick=" ">Details</button>*@
+                </td>
             </tr>
         }
         </tbody>
