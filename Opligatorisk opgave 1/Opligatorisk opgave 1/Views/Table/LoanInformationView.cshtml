@@ -56,7 +56,7 @@
     </div>
     <div class="col-lg-10"></div>
     <div class="col-lg-2">
-        <button type="Button" class="btn btn-default">Ok</button>
+        <button type="Button" class="btn btn-default" onclick="location.href='@Url.Action("SaveLoanInformation", "Table", new {@Model.ComponentId, @Model.SpecificComponentId, @Model.ComponentName , @Model.Name, @Model.Email, @Model.LoanDate, @Model.ReturnDate})'">Ok</button>
     </div>
     
 </form>
