@@ -203,6 +203,7 @@
     <Compile Include="DAL\SpecificComponent.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\WriteEmbeddedStockRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
