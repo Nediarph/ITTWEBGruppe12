@@ -12,13 +12,19 @@ namespace Opligatorisk_opgave_1.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SpecificComponents
+    public partial class SpecificComponent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SpecificComponent()
+        {
+            this.LoanInformations = new HashSet<LoanInformation>();
+        }
+    
         public int SpecCompId { get; set; }
         public int ComponentId { get; set; }
-        public Nullable<int> LoanedOut { get; set; }
     
-        public virtual Components Components { get; set; }
-        public virtual LoanInformation LoanInformation { get; set; }
+        public virtual Component Component { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LoanInformation> LoanInformations { get; set; }
     }
 }

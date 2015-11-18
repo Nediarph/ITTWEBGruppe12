@@ -12,18 +12,24 @@ namespace Opligatorisk_opgave_1.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class Component
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public Component()
         {
-            this.Components = new HashSet<Components>();
+            this.SpecificComponents = new HashSet<SpecificComponent>();
         }
     
-        public int CategoryId { get; set; }
-        public string Name { get; set; }
+        public int ComponentId { get; set; }
+        public string ComponentName { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> CompCategory { get; set; }
+        public string Datasheet { get; set; }
+        public byte[] Image { get; set; }
+        public string ManufacturerLink { get; set; }
     
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Components> Components { get; set; }
+        public virtual ICollection<SpecificComponent> SpecificComponents { get; set; }
     }
 }

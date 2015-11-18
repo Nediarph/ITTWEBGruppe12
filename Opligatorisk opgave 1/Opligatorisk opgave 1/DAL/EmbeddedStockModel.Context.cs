@@ -25,9 +25,9 @@ namespace Opligatorisk_opgave_1.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<Components> Components { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Component> Components { get; set; }
         public virtual DbSet<LoanInformation> LoanInformation { get; set; }
-        public virtual DbSet<SpecificComponents> SpecificComponents { get; set; }
+        public virtual DbSet<SpecificComponent> SpecificComponents { get; set; }
     }
 }

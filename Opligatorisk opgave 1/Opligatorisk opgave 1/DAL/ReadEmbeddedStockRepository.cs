@@ -1,32 +1,41 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Contexts;
 
 namespace Opligatorisk_opgave_1.DAL
 {
     public class ReadEmbeddedStockRepository : IReadEmbeddedStockRepository
     {
-        public ReadEmbeddedStockRepository()
+        private EmbeddedStockDbEntities dbContext;
+        public ReadEmbeddedStockRepository(EmbeddedStockDbEntities Context)
         {
-            
+            dbContext = Context;
         }
-        public IEnumerable<Components> GetAllComponents()
+        public IEnumerable<Component> GetAllComponents()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<SpecificComponents> GetAllSpecificComponentsById(int id)
-        {
-            throw new System.NotImplementedException();
+            List<Component> components = dbContext.Components.ToList();
+            return components;
         }
 
-        public LoanInformation GetLoanInformationBySpecificId(int specId)
+        public IEnumerable<SpecificComponent> GetAllSpecificComponentsById(int id)
         {
-            throw new System.NotImplementedException();
+            List<SpecificComponent> specficComponents =
+                dbContext.SpecificComponents.Where(x => x.ComponentId == id).ToList();
+            return specficComponents;
         }
 
-        public IEnumerable<Categories> GetAllCategories()
+        public IEnumerable<LoanInformation> GetLoanInformationBySpecificId(int specId)
         {
-            throw new System.NotImplementedException();
+            //LoanInformation loanInfo = dbContext.LoanInformation.Where(x => x.)
+            IEnumerable<LoanInformation> loanInfo = dbContext.LoanInformation.Where(x => x.SpecCompId == specId).ToList();
+
+            return loanInfo;
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            IEnumerable<Category> categories = dbContext.Categories.ToList();
+            return categories;
         }
     }
 }

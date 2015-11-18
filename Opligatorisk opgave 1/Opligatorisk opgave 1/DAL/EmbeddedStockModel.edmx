@@ -33,7 +33,8 @@
           <Property Name="ReturnDate" Type="datetime" Nullable="false" />
           <Property Name="LoaneeName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LoaneeEmail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsEmailSent" Type="int" Nullable="false" />
+          <Property Name="IsEmailSent" Type="int" />
+          <Property Name="SpecCompId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SpecificComponents">
           <Key>
@@ -41,7 +42,6 @@
           </Key>
           <Property Name="SpecCompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ComponentId" Type="int" Nullable="false" />
-          <Property Name="LoanedOut" Type="int" />
         </EntityType>
         <Association Name="FK_Components_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
@@ -52,6 +52,18 @@
             </Principal>
             <Dependent Role="Components">
               <PropertyRef Name="CompCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoanInformation_SpecificComponents">
+          <End Role="SpecificComponents" Type="Self.SpecificComponents" Multiplicity="1" />
+          <End Role="LoanInformation" Type="Self.LoanInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpecificComponents">
+              <PropertyRef Name="SpecCompId" />
+            </Principal>
+            <Dependent Role="LoanInformation">
+              <PropertyRef Name="SpecCompId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -66,18 +78,6 @@
             </Principal>
             <Dependent Role="SpecificComponents">
               <PropertyRef Name="ComponentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SpecificComponents_LoanInformation">
-          <End Role="LoanInformation" Type="Self.LoanInformation" Multiplicity="0..1" />
-          <End Role="SpecificComponents" Type="Self.SpecificComponents" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoanInformation">
-              <PropertyRef Name="LoanId" />
-            </Principal>
-            <Dependent Role="SpecificComponents">
-              <PropertyRef Name="LoanedOut" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -90,12 +90,12 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Components" EntitySet="Components" />
           </AssociationSet>
+          <AssociationSet Name="FK_LoanInformation_SpecificComponents" Association="Self.FK_LoanInformation_SpecificComponents">
+            <End Role="SpecificComponents" EntitySet="SpecificComponents" />
+            <End Role="LoanInformation" EntitySet="LoanInformation" />
+          </AssociationSet>
           <AssociationSet Name="FK_SpecificComponents_Components" Association="Self.FK_SpecificComponents_Components">
             <End Role="Components" EntitySet="Components" />
-            <End Role="SpecificComponents" EntitySet="SpecificComponents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SpecificComponents_LoanInformation" Association="Self.FK_SpecificComponents_LoanInformation">
-            <End Role="LoanInformation" EntitySet="LoanInformation" />
             <End Role="SpecificComponents" EntitySet="SpecificComponents" />
           </AssociationSet>
         </EntityContainer>
@@ -104,7 +104,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EmbeddedStockDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Categories">
+        <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
@@ -112,7 +112,7 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Components" Relationship="Self.FK_Components_Categories" FromRole="Categories" ToRole="Components" />
         </EntityType>
-        <EntityType Name="Components">
+        <EntityType Name="Component">
           <Key>
             <PropertyRef Name="ComponentId" />
           </Key>
@@ -123,7 +123,7 @@
           <Property Name="Datasheet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ManufacturerLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK_Components_Categories" FromRole="Components" ToRole="Categories" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Components_Categories" FromRole="Components" ToRole="Categories" />
           <NavigationProperty Name="SpecificComponents" Relationship="Self.FK_SpecificComponents_Components" FromRole="Components" ToRole="SpecificComponents" />
         </EntityType>
         <EntityType Name="LoanInformation">
@@ -135,22 +135,22 @@
           <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LoaneeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LoaneeEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsEmailSent" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SpecificComponents" Relationship="Self.FK_SpecificComponents_LoanInformation" FromRole="LoanInformation" ToRole="SpecificComponents" />
+          <Property Name="IsEmailSent" Type="Int32" />
+          <Property Name="SpecCompId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SpecificComponent" Relationship="Self.FK_LoanInformation_SpecificComponents" FromRole="LoanInformation" ToRole="SpecificComponents" />
         </EntityType>
-        <EntityType Name="SpecificComponents">
+        <EntityType Name="SpecificComponent">
           <Key>
             <PropertyRef Name="SpecCompId" />
           </Key>
           <Property Name="SpecCompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ComponentId" Type="Int32" Nullable="false" />
-          <Property Name="LoanedOut" Type="Int32" />
-          <NavigationProperty Name="Components" Relationship="Self.FK_SpecificComponents_Components" FromRole="SpecificComponents" ToRole="Components" />
-          <NavigationProperty Name="LoanInformation" Relationship="Self.FK_SpecificComponents_LoanInformation" FromRole="SpecificComponents" ToRole="LoanInformation" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_SpecificComponents_Components" FromRole="SpecificComponents" ToRole="Components" />
+          <NavigationProperty Name="LoanInformations" Relationship="Self.FK_LoanInformation_SpecificComponents" FromRole="SpecificComponents" ToRole="LoanInformation" />
         </EntityType>
         <Association Name="FK_Components_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
-          <End Role="Components" Type="Self.Components" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Components" Type="Self.Component" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="CategoryId" />
@@ -161,10 +161,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SpecificComponents_Components">
-          <End Role="Components" Type="Self.Components" Multiplicity="1">
+          <End Role="Components" Type="Self.Component" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="SpecificComponents" Type="Self.SpecificComponents" Multiplicity="*" />
+          <End Role="SpecificComponents" Type="Self.SpecificComponent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Components">
               <PropertyRef Name="ComponentId" />
@@ -174,23 +174,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SpecificComponents_LoanInformation">
-          <End Role="LoanInformation" Type="Self.LoanInformation" Multiplicity="0..1" />
-          <End Role="SpecificComponents" Type="Self.SpecificComponents" Multiplicity="*" />
+        <Association Name="FK_LoanInformation_SpecificComponents">
+          <End Role="SpecificComponents" Type="Self.SpecificComponent" Multiplicity="1" />
+          <End Role="LoanInformation" Type="Self.LoanInformation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LoanInformation">
-              <PropertyRef Name="LoanId" />
+            <Principal Role="SpecificComponents">
+              <PropertyRef Name="SpecCompId" />
             </Principal>
-            <Dependent Role="SpecificComponents">
-              <PropertyRef Name="LoanedOut" />
+            <Dependent Role="LoanInformation">
+              <PropertyRef Name="SpecCompId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EmbeddedStockDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Categories" />
-          <EntitySet Name="Components" EntityType="Self.Components" />
-          <EntitySet Name="LoanInformation" EntityType="Self.LoanInformation" />
-          <EntitySet Name="SpecificComponents" EntityType="Self.SpecificComponents" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Components" EntityType="Self.Component" />
+          <EntitySet Name="LoanInformations" EntityType="Self.LoanInformation" />
+          <EntitySet Name="SpecificComponents" EntityType="Self.SpecificComponent" />
           <AssociationSet Name="FK_Components_Categories" Association="Self.FK_Components_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Components" EntitySet="Components" />
@@ -199,9 +199,9 @@
             <End Role="Components" EntitySet="Components" />
             <End Role="SpecificComponents" EntitySet="SpecificComponents" />
           </AssociationSet>
-          <AssociationSet Name="FK_SpecificComponents_LoanInformation" Association="Self.FK_SpecificComponents_LoanInformation">
-            <End Role="LoanInformation" EntitySet="LoanInformation" />
+          <AssociationSet Name="FK_LoanInformation_SpecificComponents" Association="Self.FK_LoanInformation_SpecificComponents">
             <End Role="SpecificComponents" EntitySet="SpecificComponents" />
+            <End Role="LoanInformation" EntitySet="LoanInformations" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -211,7 +211,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EmbeddedStockDbModelStoreContainer" CdmEntityContainer="EmbeddedStockDbEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="EmbeddedStockDbModel.Categories">
+            <EntityTypeMapping TypeName="EmbeddedStockDbModel.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -219,7 +219,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Components">
-            <EntityTypeMapping TypeName="EmbeddedStockDbModel.Components">
+            <EntityTypeMapping TypeName="EmbeddedStockDbModel.Component">
               <MappingFragment StoreEntitySet="Components">
                 <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
                 <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
@@ -231,7 +231,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LoanInformation">
+          <EntitySetMapping Name="LoanInformations">
             <EntityTypeMapping TypeName="EmbeddedStockDbModel.LoanInformation">
               <MappingFragment StoreEntitySet="LoanInformation">
                 <ScalarProperty Name="LoanId" ColumnName="LoanId" />
@@ -240,15 +240,15 @@
                 <ScalarProperty Name="LoaneeName" ColumnName="LoaneeName" />
                 <ScalarProperty Name="LoaneeEmail" ColumnName="LoaneeEmail" />
                 <ScalarProperty Name="IsEmailSent" ColumnName="IsEmailSent" />
+                <ScalarProperty Name="SpecCompId" ColumnName="SpecCompId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecificComponents">
-            <EntityTypeMapping TypeName="EmbeddedStockDbModel.SpecificComponents">
+            <EntityTypeMapping TypeName="EmbeddedStockDbModel.SpecificComponent">
               <MappingFragment StoreEntitySet="SpecificComponents">
                 <ScalarProperty Name="SpecCompId" ColumnName="SpecCompId" />
                 <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
-                <ScalarProperty Name="LoanedOut" ColumnName="LoanedOut" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -266,7 +266,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

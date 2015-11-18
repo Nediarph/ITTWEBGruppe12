@@ -14,20 +14,14 @@ namespace Opligatorisk_opgave_1.DAL
     
     public partial class LoanInformation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoanInformation()
-        {
-            this.SpecificComponents = new HashSet<SpecificComponents>();
-        }
-    
         public int LoanId { get; set; }
         public System.DateTime LoanDate { get; set; }
         public System.DateTime ReturnDate { get; set; }
         public string LoaneeName { get; set; }
         public string LoaneeEmail { get; set; }
-        public int IsEmailSent { get; set; }
+        public Nullable<int> IsEmailSent { get; set; }
+        public int SpecCompId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpecificComponents> SpecificComponents { get; set; }
+        public virtual SpecificComponent SpecificComponent { get; set; }
     }
 }

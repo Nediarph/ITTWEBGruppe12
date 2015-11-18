@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78d994f4f1914bc189aa41c555b4e81a" Name="Diagram1">
-        <EntityTypeShape EntityType="EmbeddedStockDbModel.Categories" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmbeddedStockDbModel.Components" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmbeddedStockDbModel.LoanInformation" Width="1.5" PointX="2.875" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmbeddedStockDbModel.SpecificComponents" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+      <Diagram DiagramId="2d125ffd4e8241d2994a9dc65dda09f0" Name="Diagram1">
+        <EntityTypeShape EntityType="EmbeddedStockDbModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbeddedStockDbModel.Component" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbeddedStockDbModel.LoanInformation" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmbeddedStockDbModel.SpecificComponent" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="EmbeddedStockDbModel.FK_Components_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="EmbeddedStockDbModel.FK_SpecificComponents_Components" ManuallyRouted="false" />
-        <AssociationConnector Association="EmbeddedStockDbModel.FK_SpecificComponents_LoanInformation" ManuallyRouted="false" />
+        <AssociationConnector Association="EmbeddedStockDbModel.FK_LoanInformation_SpecificComponents" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
