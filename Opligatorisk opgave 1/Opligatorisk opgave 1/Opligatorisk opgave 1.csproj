@@ -173,10 +173,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TableController.cs" />
-    <Compile Include="DAL\Categories.cs">
+    <Compile Include="DAL\Category.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Components.cs">
+    <Compile Include="DAL\Component.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\EmbeddedStockModel.Context.cs">
@@ -200,9 +200,10 @@
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\ReadEmbeddedStockRepository.cs" />
-    <Compile Include="DAL\SpecificComponents.cs">
+    <Compile Include="DAL\SpecificComponent.cs">
       <DependentUpon>EmbeddedStockModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\WriteEmbeddedStockRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
