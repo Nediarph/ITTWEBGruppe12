@@ -285,6 +285,7 @@
     <Content Include="Views\Table\ComponentTable.cshtml" />
     <Content Include="Views\Table\Index.cshtml" />
     <Content Include="Views\Table\DetailsView.cshtml" />
+    <Content Include="Views\Table\LoanInformationView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

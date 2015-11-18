@@ -56,6 +56,11 @@ namespace Opligatorisk_opgave_1.Controllers
             return View(toView);
         }
 
+        public ActionResult LoanInformation(int id)
+        {
+            return View();
+        }
+
         public ActionResult Index(int id)
         {
             return View();
