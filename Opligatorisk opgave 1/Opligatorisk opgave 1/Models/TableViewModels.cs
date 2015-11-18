@@ -18,8 +18,8 @@ namespace Opligatorisk_opgave_1.Models
     public class DetailsTable
     {
         public int ComponentId { get; set; }
+        public int SpecificComponentId { get; set; }
         public string ComponentName { get; set; }
-        [DefaultValue("")]
         public string CategoryName { get; set; }
         public string ReturnDate { get; set; }
     }

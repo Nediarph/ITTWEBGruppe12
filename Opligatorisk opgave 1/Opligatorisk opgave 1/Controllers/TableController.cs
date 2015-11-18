@@ -28,8 +28,6 @@ namespace Opligatorisk_opgave_1.Controllers
 
                 toView.Add(tmpComponentTable);
             }
-            //var tmp = db.Invites.ToList();
-            
 
             return View(toView);
         }
@@ -42,7 +40,7 @@ namespace Opligatorisk_opgave_1.Controllers
 
             foreach (var component in test)
             {
-                DetailsTable tmpDetailsTable = new DetailsTable() { ComponentId = component.ComponentId, ComponentName = component.Component.ComponentName};
+                DetailsTable tmpDetailsTable = new DetailsTable() { ComponentId = id, SpecificComponentId = component.ComponentId, ComponentName = component.Component.ComponentName};
                 if (component.LoanInformations.Count != 0)
                 {
                     var tmp = component.LoanInformations.First();
@@ -56,7 +54,7 @@ namespace Opligatorisk_opgave_1.Controllers
             return View(toView);
         }
 
-        public ActionResult LoanInformation(int id)
+        public ActionResult LoanInformationView(int id)
         {
             return View();
         }
@@ -64,6 +62,18 @@ namespace Opligatorisk_opgave_1.Controllers
         public ActionResult Index(int id)
         {
             return View();
+        }
+
+        public ActionResult removeLoanInformation(int componentId, int speceficComponentId)
+        {
+
+            return RedirectToAction("DetailsView", new {id = componentId});
+        }
+
+        public ActionResult removeComponent(int componentId, int speceficComponentId)
+        {
+
+            return RedirectToAction("DetailsView", new { id = componentId });
         }
 
     }
