@@ -28,7 +28,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td onclick="location.href='@Url.Action("LoanInformationView", "Table", new {id = item.SpecificComponentId})'">
                         @Html.DisplayFor(modelItem => item.SpecificComponentId)
                     </td>
                     <td>
@@ -48,7 +48,17 @@
                         }
                     </td>
                     <td>
-                        <button type="Button" class="btn btn-default" onClick="location.href='@Url.Action("RemoveSpecificComponent", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Remove component</button>
+                        <button type="Button" class="btn btn-default" onClick="location.href = '@Url.Action("RemoveSpecificComponent", "Table", new {id = item.ComponentId, specificId = item.SpecificComponentId})'">Remove component</button>
+                    </td>
+                    <td>
+                        @if (item.ReturnDate != "")
+                        {
+                            <button type="Button" class="btn btn-default" onclick="location.href='@Url.Action("LoanInformationView", "Table", new {id = item.SpecificComponentId})'">Loan Information</button>
+                        }
+                        else
+                        {
+                            
+                        }
                     </td>
                 </tr>
             }
