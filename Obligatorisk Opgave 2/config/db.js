@@ -1,3 +1,3 @@
 module.exports = {
-	url : 'mongodb://localhost/OblOpg2'
+	url : 'MongolSlave.cloudapp.net:27017'
 }
