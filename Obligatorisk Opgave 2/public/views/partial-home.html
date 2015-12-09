@@ -1,0 +1,30 @@
+<div class="jumbotron text-center">
+    <h1>The Homey Page</h1>
+    <p>This page is a <span class="text-danger">test</span> page.</p> 
+	<p>{{ message }}</p>	
+
+	<div class="col-md-6">
+            <p class="input-group">
+              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+    </div>
+	<table class="table table-hover table-striped table-bordered">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Test1</td>
+				<td>Test2</td>
+			</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="x in food">
+			<td>{{x.name}}</td>
+			<td>{{x.test2}}</td>
+			<td>{{x.test3}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
