@@ -38,6 +38,12 @@ router.get('/', function (req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
+//frontend routes ===================
+//route to handle all angular requests
+app.get('*', function (req, res) {
+    res.sendfile('./public/views/index.html'); // load public/indx.html file
+});
+
 
 router.route('/varer')
     // create a bear (accessed at POST http://localhost:8080/api/bears)
