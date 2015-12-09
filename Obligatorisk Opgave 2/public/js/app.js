@@ -1,5 +1,5 @@
 var OblOpgave2 = angular.module('OblOpgave2', ['ui.router', 'ui.bootstrap']);
-
+//We know that you're "supposed" to split up the controllers and such, but we haven't been able to get angular to recognize the module so we can "bind" the controllers in their own file.
 OblOpgave2.config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/home');
 	
@@ -14,7 +14,7 @@ OblOpgave2.config(function($stateProvider, $urlRouterProvider){
 		});
 });
 
-OblOpgave2.controller('foodController', function($scope){
+OblOpgave2.controller('foodController', function($scope, $uibModal, $log){
 	$scope.message = "test";
 	//Datepicker taken from  https://angular-ui.github.io/bootstrap/
 	$scope.today = function(){
@@ -102,4 +102,48 @@ OblOpgave2.controller('foodController', function($scope){
 		}
 		
 	];
+	
+	$scope.animationsEnabled = false;
+	$scope.items = 'GET DAT LIST OF FOOD'
+	
+	$scope.openModal = function(size){
+		
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'foodModalContent.html',
+			controller: 'ModalInstanceCtrl',
+			size: size,
+			resolve: {
+				items: function(){
+					return $scope.items;
+				}
+			}
+		});
+		
+		modalInstance.result.then(function(selectedItem){
+			$scope.selected = selectedItem;
+		});
+	};
+
 });
+
+OblOpgave2.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, items){
+	$scope.items = items;
+	$scope.selected = {
+		item: $scope.items[0]
+	};
+	var itemSelected;
+	$scope.grams = {value: 0};
+	$scope.setItem = function (setItem){
+		itemSelected = setItem;
+	}
+	
+	$scope.ok = function(){
+		$uibModalInstance.close({foodName: itemSelected, grams: $scope.grams});
+	};
+	
+	$scope.cancel = function() {
+		$uibModalInstance.dismiss('cancel');
+	};
+});
+

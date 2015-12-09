@@ -1,0 +1,31 @@
+<div ng-controller="foodController">
+    <script type="text/ng-template" id="foodModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Another Food</h3>
+        </div>
+        <div class="modal-body">
+		
+		<div class="btn-group" uib-dropdown is-open="status.isopen">
+			<button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+				Button dropdown <span class="caret"></span>
+			</button>
+			<ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+				<li ng-repeat= "item in items" role="menuitem">
+					<a ng-click="setItem(item)"href="#">{{ item }}</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="form-group">
+			<label for="grams">Gram indtaget:</label>
+			<input type="text" class="form-control" id="grams" ng-value="grams.value">
+		</div>
+	
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+ </script>
+ </div>
