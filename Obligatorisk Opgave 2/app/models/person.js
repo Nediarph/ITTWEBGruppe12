@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 
 var PersonSchema = new Schema({
     name: String,
-    //_id: String,
-    email: String
+    _id: String,
     
 });
 
