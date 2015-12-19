@@ -1,0 +1,15 @@
+﻿doctype html
+extends ./shared_layout.jade
+html
+  head
+    title
+  body
+    block content
+        h1 #{workoutList}
+        b
+            label(for='name') Name
+        input(type="text" name="nameinput" id="name")
+
+        b  
+            label(for='completions') Completions
+        input(type="text" name="completions" id="completions")

@@ -1,0 +1,31 @@
+﻿doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title
+        | Obligatorisk Opgave 3 - Fitness
+    link(rel="stylesheet", href="libs/bootstrap/dist/css/bootstrap.min.css")
+    
+    script(src="libs/jquery/dist/jquery.min.js")
+    script(src="libs/bootstrap/dist/js/bootstrap.min.js")
+
+  body
+    //Navigation
+    div(class="col-lg-1")
+    div(class="col-lg-10")
+        nav(class="navbar navbar-inverse", role="navigation")
+            div(class="col-lg-8")
+                div(class="navbar-header")
+                    a(class="navbar-brand")
+                        | Obligatorisk Opgave 3
+
+                ul(class="nav navbar-nav")
+                    li
+                        a(href='/')
+                            | Home
+                    li
+                        a(href='/workouts')
+                            | Workouts
+    div
+        block content
+                    
