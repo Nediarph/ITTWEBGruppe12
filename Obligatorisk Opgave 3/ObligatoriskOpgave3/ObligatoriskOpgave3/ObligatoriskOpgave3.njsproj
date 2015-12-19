@@ -32,10 +32,8 @@
   <ItemGroup>
     <Compile Include="app\app.js" />
     <Compile Include="app\config\db.js" />
-<<<<<<< HEAD
     <Compile Include="app\models\users.js" />
     <Compile Include="app\models\workOutPlan.js" />
-=======
     <Compile Include="app\controllers\homeController.js" />
     <Compile Include="app\controllers\loginController.js" />
     <Compile Include="app\controllers\registerController.js" />
@@ -168,7 +166,6 @@
     <Compile Include="app\libs\jquery\src\var\support.js" />
     <Compile Include="app\libs\jquery\src\var\toString.js" />
     <Compile Include="app\libs\jquery\src\wrap.js" />
->>>>>>> d8a6ceda66432b60025ecc15fb93aa294a84a744
     <Compile Include="app\routes.js" />
     <Compile Include="server.js" />
     <Content Include="app\libs\angular-bootstrap\.bower.json" />
@@ -354,9 +351,7 @@
   <ItemGroup>
     <Folder Include="app\" />
     <Folder Include="app\config\" />
-<<<<<<< HEAD
     <Folder Include="app\models\" />
-=======
     <Folder Include="app\controllers\" />
     <Folder Include="app\libs\" />
     <Folder Include="app\libs\angular-bootstrap\" />
@@ -405,7 +400,6 @@
     <Folder Include="app\libs\jquery\src\traversing\" />
     <Folder Include="app\libs\jquery\src\traversing\var\" />
     <Folder Include="app\libs\jquery\src\var\" />
->>>>>>> d8a6ceda66432b60025ecc15fb93aa294a84a744
     <Folder Include="app\views\" />
   </ItemGroup>
   <ItemGroup>
